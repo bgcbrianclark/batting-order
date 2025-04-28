@@ -1,83 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Batting Order Tool</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-    <style>
-        body {
-            background-color: #eee;
-            font-size: 18px;
-            font-family: Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            border: 1px solid #b9b9b9;
-            padding: 2rem 2rem 4rem;
-            border-radius: 5px;
-        }
-        button, input[type="submit"] {
-            width: 100%;
-            padding: 1rem;
-            background-color: transparent;
-            border: 1px solid;
-            margin: 1rem 0;
-        }
-    </style>
-</head>
-
-<body>
+  <body>
     <div class="container">
+      <div class="title">
+        <h1>Batting Order</h1>
+      </div>
 
-        <div class="title">
-            <h1>Batting Order</h1>
-            <div class="clear-order">
-                <button id="clearOrder">Clear Order</button>
-            </div>
+      <div class="list" id="playerList"></div>
+      <div class="advance-list">
+        <button id="advanceList">Next Round</button>
+      </div>
+
+      <div class="form-toggle">
+        <button id="formToggle">Add New Player</button>
+      </div>
+
+      <form id="addNewPlayer">
+        <h2>Add New Player</h2>
+        <div class="input-group">
+          <label>Name</label>
+          <input type="text" placeholder="Batter name..." id="nameInput" />
         </div>
-
-        <div class="list">
-            <div class="batter">
-                <label><input type="checkbox"> Calvin - <strong>20</strong></label>
-            </div>
-            <div class="advance-list"><button id="advanceList">Next Round</button></div>
+        <div class="input-group">
+          <label>Number</label>
+          <input type="number" id="numberInput" />
         </div>
-
-        <form id="addNewPlayer">
-            <h2>Add New Player</h2>
-            <div class="input-group">
-                <label>Name</label>
-                <input type="text" placeholder="Batter name...">
-            </div>
-            <div class="input-group">
-                <label>Number</label>
-                <input type="number">
-            </div>
-            <div class="input-group">
-                <input type="submit">
-            </div>
-            
-        </form>
+        <div class="input-group">
+          <input type="submit" />
+        </div>
+      </form>
+      <div class="clear-list">
+        <button id="clearList">Clear List</button>
+      </div>
     </div>
 
-
-    <script>
-        class Player {
-            constructor(name, number) {
-                this.name = name;
-                this.number = number;
-            }
-        }
-        let newPlayerForm = document.querySelector('#addNewPlayer');
-        
-    </script>
-</body>
-
+    <script src="./main.js"></script>
+  </body>
 </html>
