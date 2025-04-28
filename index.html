@@ -50,7 +50,7 @@
             <div class="advance-list"><button id="advanceList">Next Round</button></div>
         </div>
 
-        <form id="addNewBatter">
+        <form id="addNewPlayer">
             <h2>Add New Player</h2>
             <div class="input-group">
                 <label>Name</label>
@@ -65,9 +65,19 @@
             </div>
             
         </form>
-        <div class="save-lineup"><button id="saveLineup">Save Linup</button></div>
     </div>
 
+
+    <script>
+        class Player {
+            constructor(name, number) {
+                this.name = name;
+                this.number = number;
+            }
+        }
+        let newPlayerForm = document.querySelector('#addNewPlayer');
+        
+    </script>
 </body>
 
 </html>
