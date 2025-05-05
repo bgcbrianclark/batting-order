@@ -8,6 +8,10 @@ body {
   align-items: center;
   min-height: 100vh;
 }
+ol,
+ul {
+  padding: 0 20px;
+}
 .container {
   background-color: #fff;
   border: 1px solid #b9b9b9;
@@ -79,6 +83,7 @@ input[type="number"] {
 .player {
   border: 2px solid transparent;
   position: relative;
+  padding: 0.5rem;
 }
 
 .player:nth-child(even) {
@@ -88,14 +93,19 @@ input[type="number"] {
 .player.active {
   border: 2px solid green;
 }
-.player.active:after {
-  content: "Batting";
-  color: green;
+
+.player.active:after,
+.player.on-deck:after {
   position: absolute;
-  top: 10px;
+  top: 12px;
   right: 8px;
   font-size: 0.8rem;
   display: block;
+}
+
+.player.active:after {
+  content: "Batting";
+  color: green;
 }
 
 .player.on-deck {
@@ -105,11 +115,6 @@ input[type="number"] {
 .player.on-deck:after {
   content: "On Deck";
   color: blue;
-  position: absolute;
-  top: 10px;
-  right: 8px;
-  font-size: 0.8rem;
-  display: block;
 }
 
 .player.standby {

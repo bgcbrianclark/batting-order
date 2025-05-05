@@ -1,5 +1,5 @@
 const newPlayerForm = document.querySelector("#addNewPlayer");
-const playerList = document.querySelector("#playerList");
+const playerList = document.querySelector("#playerList ol");
 const clearListBtn = document.querySelector("#clearList");
 const advanceBtn = document.querySelector("#advanceList");
 const toggleFormBtn = document.querySelector("#formToggle");
@@ -36,37 +36,34 @@ function newPlayer(name, number) {
   updatePlayerList();
 }
 
+function generatePlayerHtml(player, index) {
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  const strong = document.createElement("strong");
+  const textNode = document.createTextNode(" - ");
+
+  li.classList.add("player");
+  if (index == round) {
+    li.classList.add("active");
+  } else if (index == deck) {
+    li.classList.add("on-deck");
+  }
+
+  strong.innerText = player.number;
+  span.innerText = player.name;
+  li.appendChild(span);
+  li.appendChild(textNode);
+  li.appendChild(strong);
+
+  return li;
+}
+
 function updatePlayerList() {
   if (players.length) {
     playerList.innerHTML = "";
     for (let i = 0; i < players.length; i++) {
       const player = players[i];
-
-      const div = document.createElement("div");
-      div.classList.add("player");
-      if (i == round) {
-        div.classList.add("active");
-      } else if (i == deck) {
-        div.classList.add("on-deck");
-      }
-
-      const label = document.createElement("label");
-      const name = document.createElement("span");
-      name.innerText = player.name;
-      const number = document.createElement("strong");
-      number.innerText = player.number;
-      const input = document.createElement("input");
-      const spaceNode = document.createTextNode(" ");
-      const dashNode = document.createTextNode(" - ");
-      input.type = "checkbox";
-      label.appendChild(input);
-      label.appendChild(spaceNode);
-      label.appendChild(name);
-      label.appendChild(dashNode);
-      label.appendChild(number);
-
-      div.appendChild(label);
-      playerList.appendChild(div);
+      playerList.appendChild(generatePlayerHtml(player, i));
     }
   } else {
     playerList.innerHTML = "No players found.";
