@@ -12,7 +12,7 @@ let deck;
 
 if (ls.getItem("players")) {
   players = JSON.parse(ls.getItem("players"));
-  deck = players.length - 1;
+  deck = 1;
 } else {
   players = [];
 }

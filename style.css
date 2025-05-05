@@ -78,6 +78,7 @@ input[type="number"] {
 
 .player {
   border: 2px solid transparent;
+  position: relative;
 }
 
 .player:nth-child(even) {
@@ -87,9 +88,30 @@ input[type="number"] {
 .player.active {
   border: 2px solid green;
 }
+.player.active:after {
+  content: "Batting";
+  color: green;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  font-size: 0.8rem;
+  display: block;
+}
+
 .player.on-deck {
   border: 2px solid blue;
 }
+
+.player.on-deck:after {
+  content: "On Deck";
+  color: blue;
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  font-size: 0.8rem;
+  display: block;
+}
+
 .player.standby {
   background-color: red;
   color: #ffffff;
