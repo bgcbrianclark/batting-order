@@ -34,6 +34,7 @@ function newPlayer(name, number) {
   newPlayerForm.reset();
   updateLocalStorage(JSON.stringify(players));
   updatePlayerList();
+  focusForm();
 }
 
 function generatePlayerHtml(player, index) {
@@ -98,6 +99,10 @@ function advancePosition() {
   updatePlayerList();
 }
 
+function focusForm() {
+  document.querySelector("#nameInput").focus();
+}
+
 newPlayerForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -120,6 +125,10 @@ advanceBtn.addEventListener("click", function () {
 toggleFormBtn.addEventListener("click", function () {
   toggleFormBtn.classList.toggle("active");
   newPlayerForm.classList.toggle("active");
+
+  if (toggleFormBtn.classList.contains("active")) {
+    focusForm();
+  }
 });
 
 updatePlayerList();
