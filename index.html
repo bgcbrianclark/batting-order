@@ -26,18 +26,51 @@
 
       <form id="addNewPlayer">
         <h2>Add New Player</h2>
-        <div class="input-group">
+        <div class="input">
           <label>Name</label>
           <input type="text" placeholder="Batter name..." id="nameInput" />
         </div>
         <div class="input-group">
-          <label>Number</label>
-          <input type="number" id="numberInput" />
+          <div class="input">
+            <label>Number</label>
+            <input type="number" id="numberInput" />
+          </div>
+          <div class="input">
+            <label for="">Order</label>
+            <input type="number" id="orderInput" />
+          </div>
         </div>
-        <div class="input-group">
+        <div class="input">
           <input type="submit" />
         </div>
       </form>
+      <form id="editPlayer">
+        <h2>Edit Player</h2>
+        <input type="hidden" id="playerId" />
+        <div class="input">
+          <label>Name</label>
+          <input type="text" placeholder="Batter name..." id="editNameInput" />
+        </div>
+        <div class="input-group">
+          <div class="input">
+            <label>Number</label>
+            <input type="number" id="editNumberInput" />
+          </div>
+          <div class="input">
+            <label for="">Order</label>
+            <input type="number" id="editOrderInput" />
+          </div>
+        </div>
+        <div class="input-group align-right">
+          <div class="input">
+            <button id="closeEdit">Close</button>
+          </div>
+          <div class="input">
+            <input type="submit" />
+          </div>
+        </div>
+      </form>
+
       <div class="clear-list">
         <button id="clearList">Clear List</button>
       </div>
