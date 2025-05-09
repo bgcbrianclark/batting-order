@@ -34,12 +34,35 @@ function updateLocalStorage(data) {
 }
 
 function newPlayer(name, number, order) {
-  const newPlayer = new Player(name, number, order, players.length + 1);
+  const newPlayer = new Player(
+    name,
+    parseInt(number),
+    parseInt(order),
+    players.length + 1
+  );
   players.push(newPlayer);
   newPlayerForm.reset();
   updateLocalStorage(JSON.stringify(players));
   updatePlayerList();
   focusForm();
+}
+
+function editPlayer(name, number, order, id) {
+  const player = players.filter((obj) => {
+    return obj.id === id;
+  });
+
+  players[id - 1] = {
+    id: parseInt(id),
+    name,
+    order,
+    number,
+  };
+
+  console.log(players);
+
+  updateLocalStorage(JSON.stringify(players));
+  location.reload();
 }
 
 function generatePlayerHtml(player, index) {
@@ -86,9 +109,10 @@ function updatePlayerList() {
       playersLi.push(playerNode);
     }
 
-    document.querySelector("#orderInput").value = players.length + 1;
+    document.querySelector("#orderInput").value = (players.length + 1) * 10;
   } else {
     playerList.innerHTML = "No players found.";
+    document.querySelector("#orderInput").value = 10;
   }
 }
 
@@ -133,6 +157,7 @@ newPlayerForm.addEventListener("submit", function (e) {
 
   if (name && number && order) {
     newPlayer(name, number, order);
+    location.reload();
   } else {
     alert("Fill out the name and number of the new player.");
   }
@@ -157,11 +182,15 @@ updatePlayerList();
 
 playersLi.forEach((player) => {
   player.addEventListener("click", function (e) {
+    console.log("click");
+
     editPlayerForm.classList.add("active");
 
     const id = e.target.getAttribute("data-id");
     const player = players[id - 1];
 
+    console.log(id, player);
+    document.querySelector("#playerId").value = player.id;
     document.querySelector("#editNameInput").value = player.name;
     document.querySelector("#editNumberInput").value = player.number;
     document.querySelector("#editOrderInput").value = player.order;
@@ -170,4 +199,18 @@ playersLi.forEach((player) => {
 
 closeEditFormBtn.addEventListener("click", function () {
   editPlayerForm.classList.remove("active");
+});
+
+editPlayerForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const id = document.querySelector("#playerId").value;
+  const name = document.querySelector("#editNameInput").value;
+  const number = document.querySelector("#editNumberInput").value;
+  const order = document.querySelector("#editOrderInput").value;
+
+  editPlayer(name, number, order, id);
+
+  editPlayerForm.classList.remove("active");
+  location.reload();
 });
